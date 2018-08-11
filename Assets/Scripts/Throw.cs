@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Throw : MonoBehaviour {
     public GameObject doll;
+    Camera cam;
     private float force = 230f;
     private Vector2 speed = new Vector2(1.5f, 0f);
     private Rigidbody2D rb;
@@ -20,27 +21,30 @@ public class Throw : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0))        {
             // rb.AddForce(transform.right * force);
-            Vector2 current_position = doll.transform.position;
-            Vector2 mouse_position = Input.mousePosition;
-            Vector3 direction = current_position - mouse_position;
-            float angle = Mathf.Atan2(direction.x, direction.y);
+            Vector3 current_position = (transform.position);
+            Vector3 new_position = Camera.main.WorldToScreenPoint(current_position);
+            Vector3 mouse_position = Input.mousePosition;
+            Vector3 direction = mouse_position - new_position;
+            float angle = Mathf.Atan2(direction.y, direction.x);
             float y_force = force * Mathf.Sin(angle);
             float x_force = force * Mathf.Cos(angle);
 
             throw_Doll(direction, y_force,x_force);
+            doll.transform.position = doll.transform.position;
         }
 		
 	}
+	
 
     private void throw_Doll (Vector3 direction, float y_force, float x_force){
         if (direction.y < 0)
         {
-            rb.AddForce(-(transform.up * y_force));
+            rb.AddForce((transform.up * y_force));
         }
         else { rb.AddForce(transform.up * y_force); }
         if (direction.x < 0)
         {
-            rb.AddForce(-(transform.right * x_force));
+            rb.AddForce((transform.right * x_force));
         }
         else { rb.AddForce(transform.right * x_force); }
     }
