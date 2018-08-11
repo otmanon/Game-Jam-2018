@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Throw : MonoBehaviour {
     public GameObject doll;
+    public GameObject player;
+
     Camera cam;
     private float force = 230f;
     private Vector2 speed = new Vector2(1.5f, 0f);
@@ -14,11 +16,16 @@ public class Throw : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D> ();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = 0;
+        rb.gravityScale = 0.0f;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
+        doll.transform.rotation = Quaternion.Euler(0, 0, doll.transform.rotation.z) ;
         if (Input.GetMouseButtonDown(0))        {
             // rb.AddForce(transform.right * force);
             Vector3 current_position = (transform.position);
@@ -37,6 +44,7 @@ public class Throw : MonoBehaviour {
 	
 
     private void throw_Doll (Vector3 direction, float y_force, float x_force){
+        rb.gravityScale = 0.3f;
         if (direction.y < 0)
         {
             rb.AddForce((transform.up * y_force));
@@ -47,5 +55,14 @@ public class Throw : MonoBehaviour {
             rb.AddForce((transform.right * x_force));
         }
         else { rb.AddForce(transform.right * x_force); }
+        StartCoroutine(waitThreeSeconds());
+    }
+    IEnumerator waitThreeSeconds()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0;
+        rb.gravityScale = 0f;
+        player.transform.position = new Vector2(doll.transform.position.x, doll.transform.position.y - 0.3f);
     }
 }
