@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
-	public int chunkWidth = 19;
-	public int chunkHeight = 10;
 	public GameObject floorTile;
-	//public GameObject enemy;
-	public float maxSeparation;
-	public float minPlatformLength;
-	public float maxPlatformLength;
-	public float minSeparation;
+	
+	private int chunkWidth = 18;
+	private int chunkHeight = 10;	
+	private int maxSeparation = 6;
+	private int minPlatformLength = 3;
+	private int maxPlatformLength = 10;
+	private int minSeparation = 3;
 
 	// given the current difficulty, and the chunk size
 	// return a gameobject holding a new chunk
@@ -19,9 +19,9 @@ public class LevelGenerator : MonoBehaviour {
 
 		// pass 1: platform placement
 		// idea: select rows to contain platforms at random, within distance parameters
-		int sep = (int) maxSeparation / 2;
+		int sep = minSeparation - 1;
 		for (int i = 0; i < chunkHeight; i++) {
-			if ((sep >= minSeparation && Random.value > (1.0f - 1 / (currentDifficulty))) || sep > maxSeparation) {
+			if ((sep >= minSeparation && Random.value < (1 / (currentDifficulty))) || sep > maxSeparation) {
 				// place a platform in this row
 				int platformPosition = (int) Random.Range(0, chunkWidth - 1);
 				int platformWidth = (int) Random.Range(minPlatformLength, maxPlatformLength);
@@ -36,8 +36,17 @@ public class LevelGenerator : MonoBehaviour {
 					wrap = true;
 				}*/
 
-				platformStart = platformStart < 0 ? 0 : platformStart;
-				platformEnd = platformEnd > chunkWidth - 1 ? chunkWidth - 1 : platformEnd;
+				// platformStart = platformStart < 0 ? 0 : platformStart;
+				// platformEnd = platformEnd > chunkWidth - 1 ? chunkWidth - 1 : platformEnd;
+
+				if (platformStart < 0) {
+					platformStart = platformStart % chunkWidth;
+					platformStart = platformStart < 0 ? platformStart + chunkWidth : platformStart;
+					wrap = true;
+				} else if (platformEnd >= chunkWidth) {
+					platformEnd = platformEnd % chunkWidth;
+					wrap = true;
+				}
 
 				for (int j = 0; j < chunkWidth; j++) {
 					if ((wrap && (j <= platformEnd || j >= platformStart)) || (j >= platformStart && j <= platformEnd)) {
