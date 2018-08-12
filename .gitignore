@@ -34,3 +34,4 @@ sysinfo.txt
 *.unitypackage
 
 *.deb
+Assets/Scenes/StartMenu.unity.meta
