@@ -49,11 +49,11 @@ public class Throw : MonoBehaviour {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
             rb.gravityScale = 0.3f;
-            player.transform.position = new Vector2(doll.transform.position.x - 1, doll.transform.position.y);
+            player.transform.position = new Vector2(doll.transform.position.x - 0.5f, doll.transform.position.y);
             throwing = false;
         }
         if (throwing == false) {
-            doll.transform.position = new Vector2(player.transform.position.x + 1, player.transform.position.y);
+            doll.transform.position = new Vector2(player.transform.position.x + 0.5f, player.transform.position.y);
         }
 		
 	}
@@ -79,7 +79,7 @@ public class Throw : MonoBehaviour {
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
         rb.gravityScale = 0.3f;
-        player.transform.position = new Vector2(doll.transform.position.x - 1 , doll.transform.position.y );
+        player.transform.position = new Vector2(doll.transform.position.x - 0.5f , doll.transform.position.y );
         throwing = false;
     }
 }
