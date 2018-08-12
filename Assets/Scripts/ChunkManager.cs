@@ -22,7 +22,7 @@ public class ChunkManager : MonoBehaviour {
 	void Start () {
 		// instantiate references and attributes
 		go = this.gameObject;
-		lg = GameObject.FindGameObjectWithTag("Level Generator").GetComponent<LevelGenerator>();
+		lg = GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<LevelGenerator>();
 		chunkList = new List<GameObject>();
 		chunkDimensions = lg.GetDimensions();
 		currentDifficulty = initialDifficulty;
@@ -38,12 +38,13 @@ public class ChunkManager : MonoBehaviour {
 		// initial buffered chunk placement
 		for (int i = 0; i < chunkBufferSize; i++) {
 			// TODO
+			GameObject chunk = chunkList[i];
+			chunk.SetActive(true);
+			chunk.transform.position = new Vector3(0, i * -chunkDimensions.y, 0);
 		}
 	}
 	
 	void FixedUpdate () {
-		// TODO
-		
 		// move the chunks up at a constant rate
 		foreach (GameObject chunk in chunkList) {
 			Vector3 chunkPosition = chunk.transform.position;
@@ -52,6 +53,12 @@ public class ChunkManager : MonoBehaviour {
 		}
 
 		// if they end up outside of the camera, unload and load a new chunk
-
+		GameObject firstItem = chunkList[0];
+		if (firstItem.transform.position.y > chunkDimensions.y) {
+			chunkList.RemoveAt(0);
+			GameObject.Destroy(firstItem);
+			chunkList.Add(lg.GenerateChunk(currentDifficulty, nextChunkID++));
+			currentDifficulty *= difficultyModifier;
+		}
 	}
 }

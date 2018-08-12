@@ -7,7 +7,7 @@ public class LevelGenerator : MonoBehaviour {
 	public int chunkHeight;
 	public GameObject floorTile;
 	public GameObject enemy;
-	public float maxDrop;
+	public float maxSeparation;
 	public float minPlatformLength;
 	public float maxPlatformLength;
 	public float minSeparation;
@@ -18,16 +18,38 @@ public class LevelGenerator : MonoBehaviour {
 		int[,] graph = new int[chunkWidth, chunkHeight];
 
 		// pass 1: platform placement
-		for (int i = 0; i < chunkWidth; i++) {
-			int platformLength = 0;
-			for (int j = 0; j < chunkHeight; j++) {
-				// determine whether we have blank space or a platform
-				// TODO
-				if (j == chunkHeight - 1 || j == 0)
-					graph[i,j] = 0;
-				else
-					graph[i,j] = 1;
+		// idea: select rows to contain platforms at random, within distance parameters
+		int sep = (int) maxSeparation / 2;
+		for (int i = 0; i < chunkHeight; i++) {
+			if ((sep >= minSeparation && Random.value > (1.0f - 1 / (currentDifficulty))) || sep > maxSeparation) {
+				// place a platform in this row
+				int platformPosition = (int) Random.Range(0, chunkWidth - 1);
+				int platformWidth = (int) Random.Range(minPlatformLength, maxPlatformLength);
+				int platformStart = platformPosition - platformWidth / 2;
+				int platformEnd = platformPosition + platformWidth / 2;
+				bool wrap = false;
+
+				// wrap around
+				if (platformStart < 0 || platformEnd > chunkWidth - 1) {
+					platformStart = platformStart < 0 ? platformStart % chunkWidth : platformStart;
+					platformEnd = platformEnd > chunkWidth - 1 ? platformEnd % chunkWidth : platformEnd;
+					wrap = true;
+				}
+
+				for (int j = 0; j < chunkWidth; j++) {
+					if ((wrap && (j <= platformEnd || j >= platformStart)) || j >= platformStart && j <= platformEnd) {
+						graph[j,i] = 1;
+					} else {
+						graph[j,i] = 0;
+					}
+				} 
+				sep = 0;
+			} else {
+				// empty space in this row
+				for (int j = 0; j < chunkWidth; j++)
+					graph[j,i] = 0;
 			}
+			sep++;
 		}
 
 		// pass 2: enemy and trap placement
