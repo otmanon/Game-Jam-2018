@@ -6,7 +6,7 @@ public class LevelGenerator : MonoBehaviour {
 	public int chunkWidth;
 	public int chunkHeight;
 	public GameObject floorTile;
-	public GameObject enemy;
+	//public GameObject enemy;
 	public float maxSeparation;
 	public float minPlatformLength;
 	public float maxPlatformLength;

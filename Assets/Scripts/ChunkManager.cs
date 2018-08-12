@@ -26,9 +26,7 @@ public class ChunkManager : MonoBehaviour {
 		chunkList = new List<GameObject>();
 		chunkDimensions = lg.GetDimensions();
 		currentDifficulty = initialDifficulty;
-	}
 
-	void Awake() {
 		// initial buffered chunk creation
 		for (int i = 0; i < chunkBufferSize; i++) {
 			chunkList.Add(lg.GenerateChunk(currentDifficulty, nextChunkID++));
@@ -54,7 +52,7 @@ public class ChunkManager : MonoBehaviour {
 
 		// if they end up outside of the camera, unload and load a new chunk
 		GameObject firstItem = chunkList[0];
-		if (firstItem.transform.position.y > chunkDimensions.y) {
+		if (firstItem.transform.position.y > maxY) {
 			chunkList.RemoveAt(0);
 			GameObject.Destroy(firstItem);
 			chunkList.Add(lg.GenerateChunk(currentDifficulty, nextChunkID++));
