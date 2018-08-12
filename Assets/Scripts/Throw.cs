@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class Throw : MonoBehaviour {
     public GameObject doll;
     public GameObject player;
-
+    bool throwing = false;
     Camera cam;
+    private float timer = 0;
     private float force = 230f;
     private Vector2 speed = new Vector2(1.5f, 0f);
     private Rigidbody2D rb;
@@ -19,6 +20,7 @@ public class Throw : MonoBehaviour {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
         rb.gravityScale = 0.0f;
+        timer = 0;
 
     }
 	
@@ -26,18 +28,24 @@ public class Throw : MonoBehaviour {
 	void Update () {
         
         doll.transform.rotation = Quaternion.Euler(0, 0, doll.transform.rotation.z) ;
-        if (Input.GetMouseButtonDown(0))        {
+        player.transform.rotation = Quaternion.Euler(0, 0, player.transform.rotation.z);
+
+        if (Input.GetMouseButtonDown(0) && throwing == false)
+        {
             // rb.AddForce(transform.right * force);
+            throwing = true;
             Vector3 current_position = (transform.position);
             Vector3 new_position = Camera.main.WorldToScreenPoint(current_position);
             Vector3 mouse_position = Input.mousePosition;
             Vector3 direction = mouse_position - new_position;
             float angle = Mathf.Atan2(direction.y, direction.x);
-            float y_force = force * Mathf.Sin(angle);
-            float x_force = force * Mathf.Cos(angle);
-
+            float y_force = force * Mathf.Sin(angle)*Mathf.Abs(direction.y)/100;
+            float x_force = force * Mathf.Cos(angle)*Mathf.Abs(direction.x)/100;
             throw_Doll(direction, y_force,x_force);
             doll.transform.position = doll.transform.position;
+         }
+        if (throwing == false) {
+            doll.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.3f);
         }
 		
 	}
@@ -62,7 +70,8 @@ public class Throw : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2);
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
-        rb.gravityScale = 0f;
+        rb.gravityScale = 0.3f;
         player.transform.position = new Vector2(doll.transform.position.x, doll.transform.position.y - 0.3f);
+        throwing = false;
     }
 }
