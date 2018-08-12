@@ -37,7 +37,7 @@ public class LevelGenerator : MonoBehaviour {
 				}
 
 				for (int j = 0; j < chunkWidth; j++) {
-					if ((wrap && (j <= platformEnd || j >= platformStart)) || j >= platformStart && j <= platformEnd) {
+					if ((wrap && (j <= platformEnd || j >= platformStart)) || (j >= platformStart && j <= platformEnd)) {
 						graph[j,i] = 1;
 					} else {
 						graph[j,i] = 0;
