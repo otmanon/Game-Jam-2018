@@ -30,11 +30,14 @@ public class LevelGenerator : MonoBehaviour {
 				bool wrap = false;
 
 				// wrap around
-				if (platformStart < 0 || platformEnd > chunkWidth - 1) {
+				/*if (platformStart < 0 || platformEnd > chunkWidth - 1) {
 					platformStart = platformStart < 0 ? platformStart % chunkWidth : platformStart;
 					platformEnd = platformEnd > chunkWidth - 1 ? platformEnd % chunkWidth : platformEnd;
 					wrap = true;
-				}
+				}*/
+
+				platformStart = platformStart < 0 ? 0 : platformStart;
+				platformEnd = platformEnd > chunkWidth - 1 ? chunkWidth - 1 : platformEnd;
 
 				for (int j = 0; j < chunkWidth; j++) {
 					if ((wrap && (j <= platformEnd || j >= platformStart)) || (j >= platformStart && j <= platformEnd)) {
