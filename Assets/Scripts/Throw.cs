@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Throw : MonoBehaviour {
     public GameObject doll;
     public GameObject player;
-    bool throwing = false;
+    public bool throwing = false;
     Camera cam;
     private float timer = 0;
     private float force = 230f;
