@@ -49,6 +49,7 @@ public class Throw : MonoBehaviour {
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
             rb.gravityScale = 0.3f;
+            SoundManagerScript.PlaySound("teleport");
             player.transform.position = new Vector2(doll.transform.position.x - 0.5f, doll.transform.position.y);
             throwing = false;
         }
@@ -60,6 +61,7 @@ public class Throw : MonoBehaviour {
 	
 
     private void throw_Doll (Vector3 direction, float y_force, float x_force){
+        SoundManagerScript.PlaySound("throw");
         rb.gravityScale = 0.3f;
         if (direction.y < 0)
         {
@@ -79,6 +81,7 @@ public class Throw : MonoBehaviour {
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
         rb.gravityScale = 0.3f;
+        SoundManagerScript.PlaySound("teleport");
         player.transform.position = new Vector2(doll.transform.position.x - 0.5f , doll.transform.position.y );
         throwing = false;
     }
