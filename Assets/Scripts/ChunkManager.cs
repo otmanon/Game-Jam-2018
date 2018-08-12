@@ -41,7 +41,7 @@ public class ChunkManager : MonoBehaviour {
 			chunk.transform.position = new Vector3(0, i * -chunkDimensions.y, 0);
 		}
 	}
-	
+
 	void FixedUpdate () {
 		// move the chunks up at a constant rate
 		foreach (GameObject chunk in chunkList) {
@@ -55,7 +55,9 @@ public class ChunkManager : MonoBehaviour {
 		if (firstItem.transform.position.y > maxY) {
 			chunkList.RemoveAt(0);
 			GameObject.Destroy(firstItem);
-			chunkList.Add(lg.GenerateChunk(currentDifficulty, nextChunkID++));
+			GameObject newChunk = lg.GenerateChunk(currentDifficulty, nextChunkID++);
+			chunkList.Add(newChunk);
+			newChunk.SetActive(true);
 			currentDifficulty *= difficultyModifier;
 		}
 	}

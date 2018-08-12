@@ -847,12 +847,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_1: {fileID: 1383179418673610, guid: 13723a6ee3937ff4e8779c97d9a5b137, type: 2}
-  enemy_2: {fileID: 1280787308722706, guid: d45b7db653f3979439c01ce0e51071ba, type: 2}
-  enemy_3: {fileID: 1387076876058440, guid: 1b305312fd2cb8a42a507656b03f8a08, type: 2}
-  enemy_4: {fileID: 1996673455828440, guid: 2ee2a57c25a8d274789ef16387b2fbf5, type: 2}
-  enemy_5: {fileID: 1185473318776266, guid: 69b7da51d34b0ea448c986efa06cd504, type: 2}
-  enemy_6: {fileID: 1152010989702994, guid: 78e81cd15e7ecc74c9bfef8ce1690e57, type: 2}
-  enemy_7: {fileID: 1648177553614016, guid: 22429cca5bb52134e96047cabb2336da, type: 2}
+  enemy_2: {fileID: 1813164933564320, guid: 0a9016d353894824cbcd8389f56a7c66, type: 2}
+  enemy_3: {fileID: 1911936128486008, guid: 8e2fbf236dc51b9419fce5673a9d5c31, type: 2}
+  enemy_4: {fileID: 1118718536634564, guid: 4de1925163fa73949b05873fd1a71c23, type: 2}
+  enemy_5: {fileID: 1704027019703076, guid: 69b7da51d34b0ea448c986efa06cd504, type: 2}
+  enemy_6: {fileID: 1810633204809098, guid: 2359c45c3bd79814eb0fd503f0e0faee, type: 2}
+  enemy_7: {fileID: 1664450831031630, guid: 22429cca5bb52134e96047cabb2336da, type: 2}
 --- !u!1 &1331442525
 GameObject:
   m_ObjectHideFlags: 0
