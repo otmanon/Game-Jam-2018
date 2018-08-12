@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayGame : MonoBehaviour
+public class StartGame:MonoBehaviour
 {
-    public void NextScene()
+    public virtual void Next_Scene()
     {
-        SceneManager.LoadScene("IntroCutScene");
+        SceneManager.LoadScene("GamePlay");
     }
 }
