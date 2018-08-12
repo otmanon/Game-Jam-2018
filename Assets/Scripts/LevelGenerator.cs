@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
-	public int chunkWidth;
-	public int chunkHeight;
+	public int chunkWidth = 19;
+	public int chunkHeight = 10;
 	public GameObject floorTile;
 	//public GameObject enemy;
 	public float maxSeparation;
@@ -52,18 +52,6 @@ public class LevelGenerator : MonoBehaviour {
 			sep++;
 		}
 
-		// pass 2: enemy and trap placement
-		for (int i = 0; i < chunkWidth; i++) {
-			for (int j = 0; j < chunkHeight; j++) {
-				// place an enemy, or a trap
-				// TODO
-				if (graph[i,j] == 0 && Random.value > 1.0f / currentDifficulty) {
-					// place enemy
-					graph[i,j] = 2;
-				}
-			}
-		}
-
 		// generate gameobject representation of the chunk
 
 		string goName = "chunk" + chunkID;
@@ -75,8 +63,6 @@ public class LevelGenerator : MonoBehaviour {
 				if (graph[i,j] == 1) {
 					GameObject obstacle = GameObject.Instantiate(floorTile, result.transform);
 					obstacle.transform.localPosition = new Vector3(i - chunkWidth / 2, chunkHeight / 2 - j, 0);
-				} else if (graph[i,j] == 2) {
-					// GameObject enemy = GameObject.Instantiate();
 				}
 			}
 		}
