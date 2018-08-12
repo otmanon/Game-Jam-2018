@@ -845,13 +845,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b12e5e2f12b474290b21514a732e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_1: {fileID: 1383179418673610, guid: 13723a6ee3937ff4e8779c97d9a5b137, type: 2}
-  enemy_2: {fileID: 1813164933564320, guid: 0a9016d353894824cbcd8389f56a7c66, type: 2}
-  enemy_3: {fileID: 1911936128486008, guid: 8e2fbf236dc51b9419fce5673a9d5c31, type: 2}
-  enemy_4: {fileID: 1118718536634564, guid: 4de1925163fa73949b05873fd1a71c23, type: 2}
-  enemy_5: {fileID: 1704027019703076, guid: 69b7da51d34b0ea448c986efa06cd504, type: 2}
-  enemy_6: {fileID: 1810633204809098, guid: 2359c45c3bd79814eb0fd503f0e0faee, type: 2}
-  enemy_7: {fileID: 1664450831031630, guid: 22429cca5bb52134e96047cabb2336da, type: 2}
+  cake: {fileID: 1383179418673610, guid: 13723a6ee3937ff4e8779c97d9a5b137, type: 2}
+  bear: {fileID: 1813164933564320, guid: 0a9016d353894824cbcd8389f56a7c66, type: 2}
+  Billy: {fileID: 1911936128486008, guid: 8e2fbf236dc51b9419fce5673a9d5c31, type: 2}
+  Flower: {fileID: 1118718536634564, guid: 4de1925163fa73949b05873fd1a71c23, type: 2}
+  coach: {fileID: 1704027019703076, guid: 69b7da51d34b0ea448c986efa06cd504, type: 2}
+  football: {fileID: 1810633204809098, guid: 2359c45c3bd79814eb0fd503f0e0faee, type: 2}
+  Woodrow: {fileID: 1664450831031630, guid: 22429cca5bb52134e96047cabb2336da, type: 2}
 --- !u!1 &1331442525
 GameObject:
   m_ObjectHideFlags: 0
