@@ -5,6 +5,6 @@ public class PlayGame : MonoBehaviour
 {
     public void NextScene()
     {
-        SceneManager.LoadScene("GamePlay");
+        SceneManager.LoadScene("IntroCutScene");
     }
 }
