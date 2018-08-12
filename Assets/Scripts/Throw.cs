@@ -44,8 +44,16 @@ public class Throw : MonoBehaviour {
             throw_Doll(direction, y_force,x_force);
             doll.transform.position = doll.transform.position;
          }
+        if (Input.GetMouseButton(1) && throwing == true)
+        {
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.gravityScale = 0.3f;
+            player.transform.position = new Vector2(doll.transform.position.x - 1, doll.transform.position.y);
+            throwing = false;
+        }
         if (throwing == false) {
-            doll.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 0.3f);
+            doll.transform.position = new Vector2(player.transform.position.x + 1, player.transform.position.y);
         }
 		
 	}
@@ -71,7 +79,7 @@ public class Throw : MonoBehaviour {
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
         rb.gravityScale = 0.3f;
-        player.transform.position = new Vector2(doll.transform.position.x, doll.transform.position.y - 0.3f);
+        player.transform.position = new Vector2(doll.transform.position.x - 1 , doll.transform.position.y );
         throwing = false;
     }
 }
