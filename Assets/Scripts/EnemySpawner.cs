@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+       // SoundManagerScript.PlaySound();
         InvokeRepeating("Spawn_1", 5, 40);
         InvokeRepeating("Spawn_2", 10, 40);
         InvokeRepeating("Spawn_3", 15, 40);
