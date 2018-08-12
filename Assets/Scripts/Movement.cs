@@ -3,14 +3,59 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
+    public GameObject rightEdge;
+    public GameObject leftEdge;
+    public GameObject FootballEnemy;
+    public float height1 = Screen.height;
+    private float width1 = Screen.width;
+    private float speed = 0.05f;
+    public Rigidbody2D rb;
+    bool movingRight;
+    Vector3 topRightVector;
+    
+    // Use this for initialization
+    void Start () {
+        Vector3 topRightEdges = Camera.main.ScreenToWorldPoint(new Vector3(width1, height1, 0.0f));
+        topRightVector = topRightEdges;
+        if (Random.Range(-1, 1) < 0) //starts at right condition
+        {
+            FootballEnemy.transform.position = new Vector3(topRightVector.x - 4f, -topRightEdges.y +1.5f, 0.0f);
+            movingRight = false;
+        }
+        else //starts at left position
+        {
+            FootballEnemy.transform.position = new Vector3(-topRightVector.x + 4f, -topRightEdges.y +1.5f, 0.0f);
+            movingRight = true;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Update is called once per frame
+    void Update()
+    {
+        if (movingRight == true)
+        {
+            FootballEnemy.transform.position = new Vector3(FootballEnemy.transform.position.x + speed, FootballEnemy.transform.position.y, 0);
+            if (FootballEnemy.transform.position.x >= topRightVector.x  - 4f)
+            {
+                movingRight = false;
+            }
+        }
+        if (movingRight == false)
+        {
+            FootballEnemy.transform.position = new Vector3(FootballEnemy.transform.position.x - speed, FootballEnemy.transform.position.y, 0);
+            if (FootballEnemy.transform.position.x <= -topRightVector.x + 4f)
+            {
+                movingRight = true;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
