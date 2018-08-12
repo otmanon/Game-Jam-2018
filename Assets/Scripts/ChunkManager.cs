@@ -57,6 +57,7 @@ public class ChunkManager : MonoBehaviour {
 			GameObject.Destroy(firstItem);
 			GameObject newChunk = lg.GenerateChunk(currentDifficulty, nextChunkID++);
 			chunkList.Add(newChunk);
+			newChunk.transform.position = new Vector3(0, chunkDimensions.y * (chunkBufferSize - 1), 0);
 			newChunk.SetActive(true);
 			currentDifficulty *= difficultyModifier;
 		}
