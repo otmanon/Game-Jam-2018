@@ -140,13 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fb2b6399b653e4aa89a821178d82c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkWidth: 10
-  chunkHeight: 5
+  chunkWidth: 21
+  chunkHeight: 10
   floorTile: {fileID: 1645152972269060, guid: 801a929f2557b47ffb40f8952606ea45, type: 2}
-  maxSeparation: 3
-  minPlatformLength: 1
-  maxPlatformLength: 3
-  minSeparation: 1
+  maxSeparation: 5
+  minPlatformLength: 5
+  maxPlatformLength: 8
+  minSeparation: 3
 --- !u!4 &468490265
 Transform:
   m_ObjectHideFlags: 0
