@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour {
 	public GameObject floorTile;
+    public Sprite sprite;
 	
 	private int chunkWidth = 18;
 	private int chunkHeight = 10;	
@@ -74,8 +75,10 @@ public class LevelGenerator : MonoBehaviour {
 			for (int j = 0; j < chunkHeight; j++) {
 				if (graph[i,j] == 1) {
 					GameObject obstacle = GameObject.Instantiate(floorTile, result.transform);
-					obstacle.transform.localPosition = new Vector3(i - chunkWidth / 2, chunkHeight / 2 - j, 0);
-				}
+                   	obstacle.transform.localPosition = new Vector3(i - chunkWidth / 2, chunkHeight / 2 - j, 0);
+				//    SpriteRenderer renderer = obstacle.AddComponent<SpriteRenderer>();
+               //     renderer.sprite = sprite;
+                }
 			}
 		}
 

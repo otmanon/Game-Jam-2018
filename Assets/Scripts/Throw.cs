@@ -13,9 +13,13 @@ public class Throw : MonoBehaviour {
     private float force = 230f;
     private Vector2 speed = new Vector2(1.5f, 0f);
     private Rigidbody2D rb;
-    private
-	// Use this for initialization
-	void Start () {
+    public float height = Screen.height;
+    private float width = Screen.width;
+    Vector3 topRightEdges;
+
+    // Use this for initialization
+    void Start () {
+        topRightEdges = Camera.main.ScreenToWorldPoint(new Vector3(width, height, 0.0f));
         rb = GetComponent<Rigidbody2D> ();
         rb.velocity = Vector3.zero;
         rb.angularVelocity = 0;
@@ -56,8 +60,16 @@ public class Throw : MonoBehaviour {
         if (throwing == false) {
             doll.transform.position = new Vector2(player.transform.position.x + 0.5f, player.transform.position.y);
         }
-		
-	}
+        if (doll.transform.position.x > topRightEdges.x)
+        {
+            doll.transform.position = new Vector3(-topRightEdges.x, doll.transform.position.y, 0);
+        }
+        if (doll.transform.position.x < -topRightEdges.x)
+        {
+            doll.transform.position = new Vector3(topRightEdges.x, doll.transform.position.y, 0);
+        }
+
+    }
 	
 
     private void throw_Doll (Vector3 direction, float y_force, float x_force){
